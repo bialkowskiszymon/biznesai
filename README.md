@@ -1,0 +1,2 @@
+# biznesai
+nauka; studia; alk; 
