@@ -1,0 +1,11 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {flow,size,number} from './model.js';
+const close=(a,b,t=1e-6)=>assert.ok(Math.abs(a-b)<t,`${a} != ${b}`);
+const b=[{k:1,n:2,share:70,diameter:20},{k:1,n:2,share:30,diameter:20}];
+test('identyczne gałęzie i bilans',()=>{const r=flow(10,1,b);close(r.pressure,25);r.rows.forEach(x=>close(x.q,5));assert.ok(r.error<=1e-6);});
+test('różne opory; punkt startowy nie zmienia wyniku',()=>{const branches=[b[0],{...b[1],k:4}];for(const p of [1,1000]){const r=flow(9,p,branches);close(r.pressure,36);close(r.rows[0].q,6);close(r.rows[1].q,3);}});
+test('dobór 70/30 i sprawdzenie modelu',()=>{const r=size(10,1,b,1000,.61);close(r.pressure,49);close(r.rows[1].extra,40);close(r.rows[1].d,3.417,0.01);assert.equal(r.rows[0].status,'none');r.verified.forEach((s,i)=>close(s,b[i].share,.01));});
+test('geometria i normalizacja',()=>{assert.equal(size(10,1,[b[0],{...b[1],diameter:3}],1000,.61).rows[1].status,'geometry');assert.ok(size(10,1,[b[0],{...b[1],share:30.005}],1000,.61).normalized);assert.throws(()=>size(10,1,[b[0],{...b[1],share:25}],1000,.61));});
+test('różne wykładniki — opory szeregowe',()=>{const r=size(10,1,[{...b[0],n:1.5},{...b[1],n:2.3}],1000,.61);r.verified.forEach((s,i)=>close(s,b[i].share,.01));});
+test('przecinek i niepoprawne liczby',()=>{close(number('0,61'),.61);assert.ok(Number.isNaN(number('abc')));assert.ok(Number.isNaN(number('')));});
