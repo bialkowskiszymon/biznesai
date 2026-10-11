@@ -26,3 +26,9 @@ Charakterystyki gałęzi: Δp = k Qⁿ, z Q w l/min i Δp w kPa. Bisekcja wyznac
 Średnica otworu jest oszacowaniem z efektywnego modelu trwałej straty; Ceff = 0,61 jest założeniem startowym. Model nie jest zgodny z ISO 5167 i nie uwzględnia kawitacji ani odzysku ciśnienia. Średnica rury kontroluje geometrię — aplikacja nie przycina wyników d ≥ D.
 
 Zmiany danych oznaczają wcześniejsze wyniki jako nieaktualne. Przycisk „Wyczyść dane” przywraca przykładowy układ i usuwa wcześniejsze wyniki.
+
+## GitHub Pages
+
+Gotowe pliki strony są publikowane na gałęzi `gh-pages`. W repozytorium wybierz **Settings → Pages → Build and deployment → Deploy from a branch**, następnie **gh-pages** i **/ (root)**, i zapisz. Po zakończeniu publikacji adres aplikacji: https://bialkowskiszymon.github.io/biznesai/.
+
+Workflow `.github/workflows/deploy.yml` sprawdza testy i aktualizuje stronę po każdym push do `main`. Wymaga włączonego GitHub Actions z uprawnieniem zapisu zawartości. Build używa ścieżki bazowej `/biznesai/`. GitHub Pages publikuje stronę przez swój workflow po aktualizacji gałęzi.
