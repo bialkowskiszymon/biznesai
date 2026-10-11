@@ -31,4 +31,4 @@ Zmiany danych oznaczają wcześniejsze wyniki jako nieaktualne. Przycisk „Wycz
 
 Gotowe pliki strony są publikowane na gałęzi `gh-pages`. W repozytorium wybierz **Settings → Pages → Build and deployment → Deploy from a branch**, następnie **gh-pages** i **/ (root)**, i zapisz. Po zakończeniu publikacji adres aplikacji: https://bialkowskiszymon.github.io/biznesai/.
 
-Workflow `.github/workflows/deploy.yml` sprawdza testy i aktualizuje stronę po każdym push do `main`. Wymaga włączonego GitHub Actions z uprawnieniem zapisu zawartości. Build używa ścieżki bazowej `/biznesai/`. GitHub Pages publikuje stronę przez swój workflow po aktualizacji gałęzi.
+Workflow `.github/workflows/deploy.yml` sprawdza testy i aktualizuje stronę po każdym push do `main`. Wymaga włączonego GitHub Actions z uprawnieniem zapisu zawartości. Build używa względnych ścieżek zasobów. Wersja źródłowa na `main` również działa bez bundlera na hostingu statycznym. GitHub Pages publikuje stronę przez swój workflow po aktualizacji gałęzi.

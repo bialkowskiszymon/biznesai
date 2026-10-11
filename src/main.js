@@ -1,4 +1,3 @@
-import './style.css';
 import {number,flow,size} from './model.js';
 const defaults=()=>({q:'10',initial:'25',rho:'1000',ceff:'0,61',branches:[{id:1,name:'Gałąź 1',k:'1',n:'2',share:'70',diameter:'20',ceff:''},{id:2,name:'Gałąź 2',k:'1',n:'2',share:'30',diameter:'20',ceff:''}]});
 let data=defaults();try{const saved=JSON.parse(localStorage.getItem('hydro-v1'));if(saved&&Array.isArray(saved.branches)&&saved.branches.length>=2&&saved.branches.every(b=>b&&typeof b==='object'))data=saved;}catch{}
